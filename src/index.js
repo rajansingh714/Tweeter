@@ -2,9 +2,13 @@ const express = require('express');
 
 
 const connect = require('./config/serverConfig');
-
 const Tweet = require('./models/tweet');
+const tweet = require('./repository/tweet-repository');
+
+
 const app = express();
+
+
 
 const serverSetup = () => {
 
@@ -13,21 +17,14 @@ const serverSetup = () => {
           await connect();
           console.log('mongoose is coneect');
 
-        //   const tweet = await Tweet.create({
-        //     content: 'Third tweet',
-        //      userEmail: 'abc@d.com'
-        //    });
-        //    console.log(tweet);
-
-        // const tweets = await Tweet.find({userEmail: 'a@b.com'});
-
-        const findUser = await Tweet.findById('688ca25323fd6ab033b0b44b');
-        console.log(findUser);
-        // findUser.userEmail = "abc@gmail.com";
-        // findUser.save();
-
+          const tweetRepo = new tweet();
+          const result = await tweetRepo.update('688ca25323fd6ab033b0b44b', {
+            content: 'my tweet is working'
+          });
+          console.log(result);
     });
 }
+
 
 serverSetup();
 
