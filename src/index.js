@@ -13,10 +13,12 @@ const serverSetup = () => {
     console.log("mongoo db  coneect");
 
     const tweetRepo = new TweetRepository();
-    const getComment = await tweetRepo.getWithComments(
-      "688d9cf220b01310c144cdd5"
-    );
-    console.log(getComment);
+    // const getComment = await tweetRepo.getWithComments(
+    //   "688d9cf220b01310c144cdd5"
+    // );
+    // console.log(getComment);
+    const result = await tweetRepo.getAll(2, 4);
+    console.log(result);
   });
 };
 
