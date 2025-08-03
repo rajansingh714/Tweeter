@@ -15,11 +15,11 @@ const serverSetup = () => {
 
     const tweetRepo = new TweetRepository();
 
-    const result = await tweetRepo.getAll(2, 4);
-    // console.log(result);
-    // const tweet = result[0].toJSON();
-    // console.log(tweet);
-    console.log(result[0].contentWithEmail);
+    const createTweet = await tweetRepo.create({
+      content: "this is first hooks ",
+      email: "xyz@gmial.com",
+    });
+    console.log(createTweet);
   });
 };
 

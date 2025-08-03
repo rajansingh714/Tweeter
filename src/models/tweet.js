@@ -27,5 +27,12 @@ tweetSchema.virtual("contentWithEmail").get(function process() {
   return `${this.content} \n Created by: ${this.userEmail}`;
 });
 
+// Pre-validate hook - this will work with Tweet.create()
+tweetSchema.pre("validate", function (next) {
+  console.log("pre validate hook triggered");
+  next();
+});
+
+
 const Tweet = mongoose.model("Tweet", tweetSchema);
 module.exports = Tweet;
