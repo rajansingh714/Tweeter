@@ -4,35 +4,16 @@ const tweetSchema = new mongoose.Schema(
   {
     content: {
       type: String,
-      require: true,
+      required: true,
+      max: [250, "Tweet cannot be more than 250 characters"],
     },
-    userEmail: {
-      type: String,
+    hashtags: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Hashtag",
     },
-    comments: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Comment",
-      },
-    ],
   },
-  {
-    timestamps: true,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
+  { timestamps: true }
 );
-
-tweetSchema.virtual("contentWithEmail").get(function process() {
-  return `${this.content} \n Created by: ${this.userEmail}`;
-});
-
-// Pre-validate hook - this will work with Tweet.create()
-tweetSchema.pre("validate", function (next) {
-  console.log("pre validate hook triggered");
-  next();
-});
-
 
 const Tweet = mongoose.model("Tweet", tweetSchema);
 module.exports = Tweet;
