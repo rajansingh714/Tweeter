@@ -3,9 +3,8 @@ const express = require("express");
 const connect = require("./config/serverConfig");
 const Tweet = require("./models/tweet");
 
-const Hashtagrepository = require("./repository/hashtag-repository");
-
-console.log(typeof Hashtagrepository);
+const { TweetRepository } = require("./repository/index");
+const TweetService = require("./services/tweetService");
 
 const app = express();
 
@@ -15,30 +14,10 @@ const serverSetup = () => {
     await connect();
     console.log("mongoo db  connected");
 
-    const repo = new Hashtagrepository();
-
-    await repo.bulkCreate([
-      {
-        title: "Trend",
-        tweets: [],
-      },
-      {
-        title: "Exicted",
-        tweets: [],
-      },
-      {
-        title: "JS",
-        tweets: [],
-      },
-      {
-        title: "Fun",
-        tweets: [],
-      },
-      {
-        title: "Career",
-        tweet: [],
-      },
-    ]);
+    const repo = new TweetService();
+    const tweet = await repo.create({
+      content: "i am #exicted ang going to #coding , #newJob, #fullMasti ",
+    });
   });
 };
 

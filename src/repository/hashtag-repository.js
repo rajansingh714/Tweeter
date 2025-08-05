@@ -13,8 +13,8 @@ class HashtagRepository {
 
   async bulkCreate(data) {
     try {
-      const create = await Hashtag.insertMany(data);
-      return create;
+      const tags = await Hashtag.insertMany(data);
+      return tags;
     } catch (error) {
       console.log(error);
       throw error;
@@ -35,6 +35,18 @@ class HashtagRepository {
     try {
       const response = await Hashtag.findByIdAndDelete(id);
       return response;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
+  async findByName(titleList) {
+    try {
+      const tags = await Hashtag.find({
+        title: titleList,
+      });
+      return tags;
     } catch (error) {
       console.log(error);
       throw error;
