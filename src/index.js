@@ -11,15 +11,13 @@ const serverSetup = () => {
   app.listen(3000, async () => {
     console.log(`server is running on ${3000}`);
     await connect();
-    console.log("mongoo db  connect");
+    console.log("mongoo db  connected");
 
     const tweetRepo = new TweetRepository();
-
-    const createTweet = await tweetRepo.create({
-      content: "this is first hooks ",
-      email: "xyz@gmial.com",
+    const tweet = await Tweet.find({
+      content: ["First tweet", "Third tweet", "abcd Tweet"],
     });
-    console.log(createTweet);
+    console.log(tweet);
   });
 };
 

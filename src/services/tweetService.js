@@ -11,6 +11,13 @@ class TweetService {
     tags = tags.map((tag) => tag.substring(1));
     console.log(tags);
     const tweet = await this.tweetRepository.create(data);
+    // todo create hashtag and add here
+    /**
+     * 1. bulcreate in mongoose
+     * 2. filter title of hashtag based on multiple tags
+     * 3. How to add tweet id inside all the hashtags
+     */
+
     return tweet;
   }
 }
