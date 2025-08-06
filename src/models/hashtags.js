@@ -16,5 +16,11 @@ const hashtagsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+hashtagsSchema.pre("validate", function (next) {
+  // console.log(this);
+  this.title = this.title.toLowerCase();
+  next();
+});
+
 const Hashtag = mongoose.model("Hashtag", hashtagsSchema);
 export default Hashtag;

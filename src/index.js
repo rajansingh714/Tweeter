@@ -11,5 +11,5 @@ app.listen(3000, async () => {
   console.log("mongoo db  connected");
 
   const repo = new TweetService();
-  await repo.create({ content: "i am #noobs #cooder" });
+  await repo.create({ content: "#HAREKRISHNA" });
 });
