@@ -5,6 +5,7 @@ const hashtagsSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
+      unique: true,
     },
     tweets: [
       {
@@ -17,7 +18,7 @@ const hashtagsSchema = new mongoose.Schema(
 );
 
 hashtagsSchema.pre("validate", function (next) {
-  // console.log(this);
+  console.log(this);
   this.title = this.title.toLowerCase();
   next();
 });
