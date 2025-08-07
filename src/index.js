@@ -2,8 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import { connect } from "./config/serverConfig.js";
 
-import TweetService from "./services/tweetService.js";
 import apiRoutes from "./routes/index.js";
+import { UserRepository } from "./repository/index.js";
 
 const app = express();
 
@@ -17,6 +17,10 @@ app.listen(3000, async () => {
   await connect();
   console.log("mongoo db  connected");
 
-  // const repo = new TweetService();
-  // await repo.create({ content: "#KEEPCODING" });
+  const userRepo = new UserRepository();
+  const result = await userRepo.create({
+    email: "krishna@gmail.com",
+    password: 12345,
+    name: "Krishna",
+  });
 });

@@ -1,5 +1,5 @@
 class CrudRepository {
-  constructor(mode) {
+  constructor(model) {
     this.model = model;
   }
 
