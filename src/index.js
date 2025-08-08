@@ -18,16 +18,16 @@ app.listen(3000, async () => {
   await connect();
   console.log("mongoo db  connected");
 
-  const userRepo = new UserRepository();
-  const tweetRepo = new TweetRepository();
-  const tweets = await tweetRepo.getAll(0, 10);
-  const users = await userRepo.get();
+  // const userRepo = new UserRepository();
+  // const tweetRepo = new TweetRepository();
+  // const tweets = await tweetRepo.getAll(0, 10);
+  // const users = await userRepo.getAll();
   // const result = await userRepo.create({
-  //   email: "krishna@gmail.com",
-  //   password: 12345,
-  //   name: "Krishna",
+  //   email: "rajanSingh@gmail.com",
+  //   password: 741258,
+  //   name: "Rajan",
   // });
 
-  const likeService = new LikeService();
-  await likeService.toggleLike(tweets[0].id, "Tweet", users.id);
+  // const likeService = new LikeService();
+  // await likeService.toggleLike(tweets[0].id, "Tweet", users[0].id);
 });

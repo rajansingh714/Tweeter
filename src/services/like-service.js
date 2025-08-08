@@ -1,16 +1,16 @@
-import { LikeRespository, TweetRepository } from "../repository/index.js";
+import { LikeRepository, TweetRepository } from "../repository/index.js";
 
 class LikeService {
   constructor() {
-    this.likeRepository = new LikeRespository();
+    this.likeRepository = new LikeRepository();
     this.tweetRepository = new TweetRepository();
   }
 
   async toggleLike(modelId, modelType, userId) {
     // /api/v1/likes/toggle?id=modelid&type=Tweet
-    console.log(modelId, modelType, userId);
     if (modelType == "Tweet") {
       var likeable = await this.tweetRepository.find(modelId);
+      // console.log(">>>>>>>>>>>", likeable);
     } else if (modelType == "Comment") {
       // TODO
     } else {
@@ -21,11 +21,12 @@ class LikeService {
       onModel: modelType,
       likeable: modelId,
     });
-    console.log("exists", existsLike);
-    if (exists) {
-      likeable.likes.pull(exists.id);
+    // console.log("existsssssssssss", existsLike);
+    if (existsLike) {
+      likeable.likes.pull(existsLike.id);
       await likeable.save();
-      await exists.remove();
+      // await existsLike.remove();
+      await this.likeRepository.destroy(existsLike._id);
       var isAdded = false;
     } else {
       const newLike = await this.likeRepository.create({
@@ -35,7 +36,6 @@ class LikeService {
       });
       likeable.likes.push(newLike);
       await likeable.save();
-
       var isAdded = true;
     }
     return isAdded;

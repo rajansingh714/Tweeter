@@ -26,17 +26,22 @@ class TweetService {
       tag.save();
     });
 
-    // [exicted, coding , JS, exicted] ->  [{title: exicted}, {title: JS}]
-
-    // todo create hashtag and add here
-    /**
-     * 1. bulcreate in mongoose
-     * 2. filter title of hashtag based on multiple tags
-     * 3. How to add tweet id inside all the hashtags
-     */
-
     return tweet;
   }
+
+  async get(tweetId) {
+    const tweet = await this.tweetRepository.getWithComments(tweetId);
+    return tweet;
+  }
+
+  // [exicted, coding , JS, exicted] ->  [{title: exicted}, {title: JS}]
+
+  // todo create hashtag and add here
+  /**
+   * 1. bulcreate in mongoose
+   * 2. filter title of hashtag based on multiple tags
+   * 3. How to add tweet id inside all the hashtags
+   */
 }
 
 export default TweetService;
