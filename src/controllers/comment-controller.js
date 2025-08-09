@@ -1,15 +1,17 @@
 import CommentService from "../services/comment-service.js";
+import TweetService from "../services/tweetService.js";
 
 const commentService = new CommentService();
+const tweetService = new TweetService();
 
 export const createComment = async (req, res) => {
   try {
-    console.log(
-      req.body.content,
-      req.query.modelId,
-      req.query.modelType,
-      req.body.userId
-    );
+    // console.log(
+    //   req.body.content,
+    //   req.query.modelId,
+    //   req.query.modelType,
+    //   req.body.userId
+    // );
     const response = await commentService.create(
       req.query.modelId,
       req.query.modelType,
