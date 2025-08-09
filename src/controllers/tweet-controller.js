@@ -4,7 +4,7 @@ const tweetService = new TweetService();
 
 export const createTweet = async (req, res) => {
   try {
-    const response = await tweetService.create(req.body);
+    const response = await tweetService.create(req.query);
     return res.status(200).json({
       success: true,
       message: "SuccessFully created a new data",

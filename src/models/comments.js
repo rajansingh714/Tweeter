@@ -7,8 +7,10 @@ const commentSchema = new mongoose.Schema(
       required: true,
     },
 
-    userEmail: {
-      type: String,
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
     onModel: {
       type: String,
@@ -20,6 +22,12 @@ const commentSchema = new mongoose.Schema(
       required: true,
       refPath: "onModel",
     },
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
   },
   { timestamps: true }
 );
