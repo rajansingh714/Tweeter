@@ -5,12 +5,21 @@ class UserService {
     this.userRepository = new UserRepository();
   }
 
-  async create(data) {
+  async signup(data) {
     try {
       const response = await this.userRepository.create(data);
       return response;
     } catch (error) {
       console.log(error);
+      throw error;
+    }
+  }
+
+  async getUserByEmail(email) {
+    try {
+      const user = this.userRepository.findBy({ email });
+      return user;
+    } catch (error) {
       throw error;
     }
   }
