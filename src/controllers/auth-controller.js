@@ -28,7 +28,7 @@ export const signUp = async (req, res) => {
 
 export const logIn = async (req, res) => {
   try {
-    const user = await userService.getUserByEmail(req.body.email);
+    const user = await userService.signin(req.body);
     if (!user) {
       return res.status(401).json({
         message: "no user found",

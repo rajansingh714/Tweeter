@@ -23,6 +23,25 @@ class UserService {
       throw error;
     }
   }
+
+  async signin(data) {
+    try {
+      const user = await this.getUserByEmail(data.email);
+      if (!user) {
+        throw {
+          message: "no user found",
+        };
+      }
+
+      if (!user.comparePassword(data.password)) {
+        throw {
+          message: "Incorrect password",
+        };
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default UserService;
